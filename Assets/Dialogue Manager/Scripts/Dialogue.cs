@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DialogueManager {
+namespace DialogueManagerSystem {
 
     [System.Serializable]
     public class Dialogue {

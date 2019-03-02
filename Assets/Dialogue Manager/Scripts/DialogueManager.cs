@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace DialogueManager {
+namespace DialogueManagerSystem {
 	public class DialogueManager : MonoBehaviour {
 
 		//Singleton

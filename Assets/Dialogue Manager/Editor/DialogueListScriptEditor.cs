@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-namespace DialogueManager {
+namespace DialogueManagerSystem {
 	[CustomEditor(typeof(DialogueListScript))]
 	[CanEditMultipleObjects]
 	public class DialogueListScriptEditor : Editor {

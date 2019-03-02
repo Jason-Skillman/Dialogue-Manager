@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DialogueManager {
+namespace DialogueManagerSystem {
 	public class DialogueListScript : MonoBehaviour {
 
 		public List<DialogueSingle> dialogueList = new List<DialogueSingle>();
