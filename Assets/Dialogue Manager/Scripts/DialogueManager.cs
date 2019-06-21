@@ -61,7 +61,7 @@ namespace DialogueManagerSystem {
 				Destroy(gameObject);
 			}
 			
-			eventSystem = GameObject.Find("Event System").GetComponent<EventSystem>();
+			eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 			animator = GetComponent<Animator>();
 		}
 		
