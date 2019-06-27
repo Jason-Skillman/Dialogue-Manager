@@ -49,6 +49,7 @@ namespace DialogueManagerSystem {
 		private bool removeButtons = false;
 		private EventSystem eventSystem;
 		private Animator animator;
+        private Coroutine coroutineFadeOutAudio;
 
 
 		void Awake() {
@@ -208,17 +209,17 @@ namespace DialogueManagerSystem {
 
 
 			isDialoguePlaying = true;
-			audioTyping.Play();
+            if(audioTyping) audioTyping.Play();
 
 			//Start typing out sentance
 			StopAllCoroutines();
 			StartCoroutine(TypeSentence(sentence));
-		}
+        }
 
 		///<summary>Called internaly when the dialouge has finished typing out the sentance</summary>
 		private void FinishedTypingSentance() {
-			//Fades out the audio
-			StartCoroutine(FadeOutAudio(audioTyping, 0.5f));
+            //Fades out the audio
+            coroutineFadeOutAudio = StartCoroutine(FadeOutAudio(audioTyping, 0.5f));
 			
 			//Start the EndOfTyping Audio
 			audioEndOfTyping.Play();
@@ -276,16 +277,19 @@ namespace DialogueManagerSystem {
 		}
 
 		private IEnumerator FadeOutAudio(AudioSource audioSource, float FadeTime) {
+            if (!audioSource) StopCoroutine(coroutineFadeOutAudio);
 			audioSource.volume = 1;	//1 is Max volume
-			while(audioSource.volume > 0) {
-				audioSource.volume -= 1 * Time.deltaTime / FadeTime;
-
+			while(audioSource.volume > 0.05f) {
 				yield return null;
-			}
+
+                audioSource.volume -= 1 * Time.deltaTime / FadeTime;
+            }
 
 			audioSource.Stop();
 			audioSource.volume = 1;
-		}
+
+            StopCoroutine(coroutineFadeOutAudio);
+        }
 
 	}
 
