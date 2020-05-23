@@ -7,7 +7,6 @@ using UnityEngine.UI;
 namespace DialogueManagerSystem {
 	public class DialogueManager : MonoBehaviour {
 
-		//Singleton
 		public static DialogueManager main;
 
 		private List<Holder> queueList = new List<Holder>();
@@ -19,6 +18,8 @@ namespace DialogueManagerSystem {
 				return isDialoguePlaying;
 			}
 		}
+		
+		public Sprite defaultPortrait;
 
 		//Type speed
 		public TypeSpeed typeSpeed = TypeSpeed.Fast;
@@ -26,15 +27,12 @@ namespace DialogueManagerSystem {
 		public float typeSpeedMedium = 0.05f;
 		public float typeSpeedSlow = 0.1f;
 
-		//Component
+		//References
 		public Text dialogueNameText;
 		public Text dialogueSentenceText;
-		public Image imageNPSIcon;
+		public Image imagePortrait;
 		public AudioSource audioTyping;
 		public AudioSource audioEndOfTyping;
-
-		//Defaults
-		public Sprite defaultPortrait;
 
 		//Option Buttons
 		public GameObject optionBtn1;
@@ -43,7 +41,7 @@ namespace DialogueManagerSystem {
 		public GameObject optionBtn4;
 		public GameObject clickAreaField;
 
-		//Delegate
+		
 		Queue<Callback> queueCallbacks = new Queue<Callback>();
 
 		private bool removeButtons = false;
@@ -198,9 +196,9 @@ namespace DialogueManagerSystem {
 			//Set the name and sentance to the next in the queue
 			dialogueNameText.text = queueList[0].name;
 			if(queueList[0].sprite != null) {
-				imageNPSIcon.sprite = queueList[0].sprite;
+				imagePortrait.sprite = queueList[0].sprite;
 			} else {
-				imageNPSIcon.sprite = defaultPortrait;
+				imagePortrait.sprite = defaultPortrait;
 			}
 			string sentence = queueList[0].sentences;
 
