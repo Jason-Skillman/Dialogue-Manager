@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DialogueManagerSystem {
+namespace Dialogue.DialogueManager {
     public class DialogueScript : MonoBehaviour {
 
         public Dialogue[] dialogue;

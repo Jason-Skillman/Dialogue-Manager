@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DialogueManagerSystem {
+namespace Dialogue.DialogueManager {
 
 	[CustomEditor(typeof(DialogueManager), true)]
 	public class DialogueManagerEditor : Editor {

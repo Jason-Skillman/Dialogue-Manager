@@ -931,11 +931,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d738d68ab42c266428f0d0e824f08569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueList:
-  - name: Jason
-    sentence: This is my list dialogue script
-  - name: '"Unknown Voice"'
-    sentence: This is neat!
+  listDialogue:
+  - spriteIcon: {fileID: 0}
+    name: Jason
+    sentences:
+    - Hi i am Jason
+  - spriteIcon: {fileID: 0}
+    name: Billy
+    sentences:
+    - I am Billy
+    - This is neat
+  - spriteIcon: {fileID: 0}
+    name: Brian
+    sentences:
+    - I am Brian
+    - Thia is also neat
+    - Cool
 --- !u!4 &938649477
 Transform:
   m_ObjectHideFlags: 0

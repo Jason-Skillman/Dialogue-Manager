@@ -1,18 +1,20 @@
+using System;
 using UnityEngine;
 
-namespace DialogueManagerSystem {
+namespace Dialogue.DialogueManager {
 
-    [System.Serializable]
+    [Serializable]
     public class Dialogue {
 		public Sprite spriteIcon;
 
 		public string name;
 
-        [TextArea(3, 10)]
+        //[TextArea(3, 10)]
         public string[] sentences;
     }
 
-	[System.Serializable]
+    [Obsolete]
+	[Serializable]
 	public class DialogueSingle {
 		public string name;
 		public string sentence;

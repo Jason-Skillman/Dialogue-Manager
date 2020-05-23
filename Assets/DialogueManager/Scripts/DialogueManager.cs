@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace DialogueManagerSystem {
+namespace Dialogue.DialogueManager {
 	public class DialogueManager : MonoBehaviour {
 
 		public static DialogueManager main;
@@ -64,7 +65,9 @@ namespace DialogueManagerSystem {
 			animator = GetComponent<Animator>();
 		}
 		
-		///<summary>Main method to call when adding new dialogue to the queue</summary>
+		///<summary>
+		/// Main method to call when adding new dialogue to the queue
+		/// </summary>
 		public void AddNewDialogue(Dialogue[] dialogue, ButtonOption[] optionBtn = null, Callback callbackFinished = null) {
 			animator.SetBool("IsOpen", true);
 
@@ -106,7 +109,7 @@ namespace DialogueManagerSystem {
 			}
 		}
 
-		///<summary>Main method to call when adding new dialogue to the queue</summary>
+		[Obsolete]
 		public void AddNewDialogue(List<DialogueSingle> oldDialogue) {
 			Dialogue[] newDialoguesOLD = new Dialogue[oldDialogue.Count];
 			List<Dialogue> newdialogues = new List<Dialogue>();

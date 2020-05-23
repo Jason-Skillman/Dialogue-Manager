@@ -1,90 +1,115 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-namespace DialogueManagerSystem {
+namespace Dialogue.DialogueManager {
 	[CustomEditor(typeof(DialogueListScript))]
-	[CanEditMultipleObjects]
 	public class DialogueListScriptEditor : Editor {
 
-		public DialogueListScript main;
+		private DialogueListScript myTarget;
 		private ReorderableList reorderableList;
-
-		//Constants
-		const float k_DefaultElementHeight = 48f;
-		const float k_PaddingBetweenRules = 13f;
-		const float k_SingleLineHeight = 16f;
-		const float k_LabelWidth = 53f;
-
-		const float k_MaxInspectorWidth = 250f;
-		const float k_MarginBetweenElements = 20f;
+		private Dictionary<string, ReorderableList> dictionaryInnerList = new Dictionary<string, ReorderableList>();
 
 
 		public void OnEnable() {
-			main = (DialogueListScript)target;
+			myTarget = (DialogueListScript) target;
 
-			reorderableList = new ReorderableList(main.dialogueList, typeof(DialogueSingle), true, true, true, true);
+			reorderableList = new ReorderableList(serializedObject,
+				serializedObject.FindProperty("listDialogue"),
+				true, true, true, true);
 			reorderableList.drawHeaderCallback += OnDrawHeader;
 			reorderableList.drawElementCallback += OnDrawElement;
 			reorderableList.elementHeightCallback += GetElementHeight;
-			reorderableList.onReorderCallbackWithDetails += ReorderCallbackDelegateWithDetails;
 		}
 
 		public override void OnInspectorGUI() {
-			//base.OnInspectorGUI();
-			EditorGUILayout.Space();
+			serializedObject.Update();
 
-			//EditorGUILayout.LabelField("This is the ScriptableEvent thing", EditorStyles.boldLabel);
+			reorderableList.DoLayoutList();
 
-			if(reorderableList != null && main.dialogueList != null)
-				reorderableList.DoLayoutList(); //Must be called in OnInspectorGUI() method
-
-			EditorUtility.SetDirty(target);
+			serializedObject.ApplyModifiedProperties();
 		}
 
 		private void OnDrawHeader(Rect rect) {
-			GUI.Label(rect, "Reorderable Dialogue List");
+			EditorGUI.LabelField(rect, "Dialogue Card");
 		}
+
 		private void OnDrawElement(Rect rect, int index, bool isactive, bool isfocused) {
+			SerializedProperty element = reorderableList.serializedProperty.GetArrayElementAtIndex(index);
 
-			DialogueSingle dialogue = main.dialogueList[index];
+			rect.y += 2;
+			float width = EditorGUIUtility.currentViewWidth - EditorGUIUtility.fieldWidth - 12;
 
-			float y = rect.yMin + 2;
-			float width = rect.width;
-			float height = rect.height;
+			EditorGUI.PropertyField(new Rect(rect.x, rect.y, width, EditorGUIUtility.singleLineHeight),
+				element.FindPropertyRelative("spriteIcon"));
+
+			EditorGUI.PropertyField(new Rect(rect.x, rect.y + 20, width, EditorGUIUtility.singleLineHeight),
+				element.FindPropertyRelative("name"));
+
+			
+			//Create the inner sentence list
+			rect.y += 2;
+			SerializedProperty innerListProp = element.FindPropertyRelative("sentences");
+			
+			//Find the reorderable list in the dictonary else create a new one
+			ReorderableList innerReorderableList;
+			if(dictionaryInnerList.ContainsKey(element.propertyPath)) {
+				innerReorderableList = dictionaryInnerList[element.propertyPath];
+			} else {
+				//Create reorderable list and store it in dict
+				innerReorderableList = new ReorderableList(element.serializedObject, innerListProp,
+					true, true, true, true);
+				
+				innerReorderableList.drawHeaderCallback = (innerRect) => EditorGUI.LabelField(innerRect, "Sentences");
+				
+				innerReorderableList.drawElementCallback = (innerRect, innerIndex, innerA, innerH) => {
+					// Get element of inner list
+					SerializedProperty innerElement = innerListProp.GetArrayElementAtIndex(innerIndex);
+
+					float innerLabelWidth = EditorGUIUtility.labelWidth - 90;
+					float innerFieldWidth = innerRect.width - innerLabelWidth;
+					
+					//Draw the label
+					EditorGUI.LabelField(new Rect(innerRect.x, innerRect.y, innerLabelWidth, EditorGUIUtility.singleLineHeight),
+						"#" + (innerIndex + 1));
+					
+					//Draw the text area
+					innerElement.stringValue = EditorGUI.TextArea(new Rect(innerRect.x + innerLabelWidth, innerRect.y + 2, innerFieldWidth, EditorGUIUtility.singleLineHeight * 3),
+						innerElement.stringValue);
+				};
+
+				innerReorderableList.elementHeightCallback = (innerHeightIndex) => {
+					return EditorGUIUtility.singleLineHeight * 3 + 4;
+				};
+				
+				dictionaryInnerList[element.propertyPath] = innerReorderableList;
+			}
+			
+			//Setup the inner list
+			var height = (innerListProp.arraySize + 3) * EditorGUIUtility.singleLineHeight;
+			innerReorderableList.DoList(new Rect(rect.x, rect.y + 40, rect.width, height));
 
 
-			EditorGUI.BeginChangeCheck();
-
-			Rect newRect = new Rect(rect.xMin, y, width, k_SingleLineHeight);
-
-			//Element 1
-			dialogue.name = EditorGUI.TextField(newRect, "Name", dialogue.name);
-			y += k_MarginBetweenElements;
-
-			//Element 2
-			newRect = new Rect(rect.xMin, y, width, k_SingleLineHeight);
-			EditorGUI.LabelField(newRect, "Sentance");
-
-			//Element 3
-			int offset = 120;
-			newRect = new Rect(rect.xMin + offset, y, width - offset, k_SingleLineHeight * 3);
-			dialogue.sentence = EditorGUI.TextArea(newRect, dialogue.sentence);
-			y += k_MarginBetweenElements;
-
-			if(EditorGUI.EndChangeCheck())
-				SaveTile();
+			//Debug
+			//EditorGUILayout.PropertyField(element.FindPropertyRelative("sentences"));
 		}
+
 		private float GetElementHeight(int index) {
-			return 90;
+			SerializedProperty element = reorderableList.serializedProperty.GetArrayElementAtIndex(index);
+			
+			//The height of one card
+			float cardHeight = EditorGUIUtility.singleLineHeight * 3 + 4;
+			//Default value when no cards exist
+			float extraInnerHeight = 20;
+			//Find the amount of cards and get the final height value
+			if(dictionaryInnerList.ContainsKey(element.propertyPath))
+				if(dictionaryInnerList[element.propertyPath].count > 0)
+					extraInnerHeight = dictionaryInnerList[element.propertyPath].count * cardHeight;
+			
+			return EditorGUIUtility.singleLineHeight * 5 + 10 + extraInnerHeight;
 		}
-		private void ReorderCallbackDelegateWithDetails(ReorderableList list, int oldIndex, int newIndex) {
-			SaveTile();
-		}
-		
-		private void SaveTile() {
-			EditorUtility.SetDirty(target);
-			SceneView.RepaintAll();
-		}
+
 	}
+	
 }
