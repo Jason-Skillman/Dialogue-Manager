@@ -15,11 +15,11 @@ namespace Dialogue.DialogueManager {
 			serializedObject.Update();
 			
 			
+			EditorGUILayout.LabelField("Status", EditorStyles.boldLabel);
 			EditorGUILayout.LabelField("Is Playing: " + myTarget.IsDialoguePlaying);
 			
 			
 			EditorGUILayout.Space();
-			EditorGUILayout.LabelField("DialogueManager", EditorStyles.boldLabel);
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultPortrait"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("typeSpeed"));
 			

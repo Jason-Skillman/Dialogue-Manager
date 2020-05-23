@@ -5,15 +5,12 @@ using UnityEngine.Serialization;
 namespace Dialogue.DialogueManager {
 	public class DialogueListScript : MonoBehaviour {
 
-		[FormerlySerializedAs("dialogueList")]
-		public List<Dialogue> listDialogue = new List<Dialogue>();
-
-
-		///<summary>
-		/// Main method to call when you whant to trigger this dialouge
-		/// </summary>
+		//public List<DialogueSpeaker> listDialogue = new List<DialogueSpeaker>();
+		public DialogueGroup dialogueGroup;
+		
+		
 		public void TriggerDialogue() {
-			DialogueManager.main.AddNewDialogue(listDialogue.ToArray());
+			//DialogueManager.Instance.AddDialogue(dialogueGroup);
 		}
 
 	}

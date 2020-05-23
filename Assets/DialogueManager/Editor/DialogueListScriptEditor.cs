@@ -15,8 +15,13 @@ namespace Dialogue.DialogueManager {
 		public void OnEnable() {
 			myTarget = (DialogueListScript) target;
 
-			reorderableList = new ReorderableList(serializedObject,
+			SerializedProperty dialogueGroupProperty = serializedObject.FindProperty("dialogueGroup");
+
+			/*reorderableList = new ReorderableList(serializedObject,
 				serializedObject.FindProperty("listDialogue"),
+				true, true, true, true);*/
+			reorderableList = new ReorderableList(serializedObject,
+				dialogueGroupProperty.FindPropertyRelative("dialogueSpeakers"),
 				true, true, true, true);
 			reorderableList.drawHeaderCallback += OnDrawHeader;
 			reorderableList.drawElementCallback += OnDrawElement;
@@ -27,6 +32,8 @@ namespace Dialogue.DialogueManager {
 			serializedObject.Update();
 
 			reorderableList.DoLayoutList();
+			
+			//Todo: dia buttons
 
 			serializedObject.ApplyModifiedProperties();
 		}
@@ -42,7 +49,7 @@ namespace Dialogue.DialogueManager {
 			float width = EditorGUIUtility.currentViewWidth - EditorGUIUtility.fieldWidth - 12;
 
 			EditorGUI.PropertyField(new Rect(rect.x, rect.y, width, EditorGUIUtility.singleLineHeight),
-				element.FindPropertyRelative("spriteIcon"));
+				element.FindPropertyRelative("sprite"));
 
 			EditorGUI.PropertyField(new Rect(rect.x, rect.y + 20, width, EditorGUIUtility.singleLineHeight),
 				element.FindPropertyRelative("name"));

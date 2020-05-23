@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,12 @@ public class DialogueCallbackTrigger : MonoBehaviour {
 
 	public DialogueScript dialogue;
 
-	private Callback callbackFinished;
+	private Action callbackFinished;
 	
 
 	public void TriggerDialogue() {
 		callbackFinished = OnDialogueFinish;
-		dialogue.TriggerDialogue(callbackFinished);
+		//dialogue.TriggerDialogue(callbackFinished);
 	}
 
 	private void OnDialogueFinish() {

@@ -150,14 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Callback
-    sentences:
-    - Hello I am callback
-    - This is a test to see if the callback method was called at the end of this
-      dialogue box.
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!4 &3230225
 Transform:
   m_ObjectHideFlags: 0
@@ -440,7 +434,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 938649476}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -895,13 +889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Cam
-    sentences:
-    - I am Cam nice to meet you.
-    - What is your name?
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &938649475
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,22 +920,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d738d68ab42c266428f0d0e824f08569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listDialogue:
-  - spriteIcon: {fileID: 0}
-    name: Jason
-    sentences:
-    - Hi i am Jason
-  - spriteIcon: {fileID: 0}
-    name: Billy
-    sentences:
-    - I am Billy
-    - This is neat
-  - spriteIcon: {fileID: 0}
-    name: Brian
-    sentences:
-    - I am Brian
-    - Thia is also neat
-    - Cool
+  dialogueGroup:
+    dialogueSpeakers:
+    - sprite: {fileID: 0}
+      name: 
+      sentences: []
+    dialogueButton:
+      name: 
+      dialogueTrigger: {fileID: 0}
 --- !u!4 &938649477
 Transform:
   m_ObjectHideFlags: 0
@@ -1004,12 +985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: '"Voice"'
-    sentences:
-    - Interesting choice.
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1009195363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,21 +1189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Jason
-    sentences:
-    - I am Jason.
-    - And I love this Dialogue Box!
-  - spriteIcon: {fileID: 0}
-    name: '"Voice"'
-    sentences:
-    - You hear a strange noise coming from Cam and he does not look quite right.
-  - spriteIcon: {fileID: 0}
-    name: Cam
-    sentences:
-    - ...
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!4 &1043777205
 Transform:
   m_ObjectHideFlags: 0
@@ -1291,18 +1255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Billy
-    sentences:
-    - There is a door in front of you. Do you want to open it?
-  buttonOptions:
-  - name: Yes
-    trigger: {fileID: 1260885977}
-  - name: Maybe
-    trigger: {fileID: 1544648056}
-  - name: No
-    trigger: {fileID: 1087538945}
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1070581655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,12 +1455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Billy
-    sentences:
-    - That's a shame.
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1118860052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,12 +1541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Billy
-    sentences:
-    - Good luck you are going to need it!!!
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1287261351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,13 +1832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: '"Voice"'
-    sentences:
-    - Fine.
-    - I will leave you alone.
-  buttonOptions: []
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1544648054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,16 +1880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Billy
-    sentences:
-    - Well there is not much time left to decide.
-  buttonOptions:
-  - name: Yes
-    trigger: {fileID: 1260885977}
-  - name: No
-    trigger: {fileID: 1087538945}
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1672091766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,31 +2091,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: Ken
-    sentences:
-    - Hello my name is Ken.
-    - This is a good example of a large dialogue prompt.
-  - spriteIcon: {fileID: 0}
-    name: '"Voice"'
-    sentences:
-    - I am the voice in your head.
-    - You will never make it through the dungeon.
-  - spriteIcon: {fileID: 0}
-    name: Ken
-    sentences:
-    - What!!! Who is that? Where are you?
-  - spriteIcon: {fileID: 0}
-    name: '"Voice"'
-    sentences:
-    - I am in your head.
-    - Do you want me to leave? If I do I will no longer help you through the dungeon.
-  buttonOptions:
-  - name: Yes
-    trigger: {fileID: 1478546488}
-  - name: No
-    trigger: {fileID: 1998733479}
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &1921805556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,23 +2241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ddd33eae28b5148a72170d47ccd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - spriteIcon: {fileID: 0}
-    name: '"Voice"'
-    sentences:
-    - Good choice.
-    - I will help guide you through this dungeon.
-  - spriteIcon: {fileID: 0}
-    name: Ken
-    sentences:
-    - Thanks.
-    - I think I am going to need it.
-    - Now do I want to use a Sword or a Bow in this Dungeon
-  buttonOptions:
-  - name: Sword
-    trigger: {fileID: 954801728}
-  - name: Bow
-    trigger: {fileID: 954801728}
+  dialogueSpeaker: []
+  dialogueButton: []
 --- !u!1 &2027783994
 GameObject:
   m_ObjectHideFlags: 0
