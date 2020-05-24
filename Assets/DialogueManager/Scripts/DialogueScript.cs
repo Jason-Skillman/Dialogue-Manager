@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Dialogue.DialogueManager {
-	public class DialogueListScript : MonoBehaviour {
+	public class DialogueScript : MonoBehaviour {
 
 		public DialogueGroup dialogueGroup;
 		

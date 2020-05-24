@@ -6,7 +6,7 @@ namespace Dialogue.DialogueManager {
 	[Serializable]
 	public struct DialogueGroup {
 		public List<DialogueSpeaker> dialogueSpeakers;
-		public DialogueButton dialogueButton;
+		public List<DialogueButton> dialogueButtons;
 	}
 	
 }

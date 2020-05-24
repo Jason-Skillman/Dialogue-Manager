@@ -4,18 +4,19 @@ using UnityEditor;
 using UnityEditorInternal;
 
 namespace Dialogue.DialogueManager {
-	[CustomEditor(typeof(DialogueListScript))]
-	public class DialogueListScriptEditor : Editor {
+	[CustomEditor(typeof(DialogueScript))]
+	public class DialogueScriptEditor : Editor {
 
-		private DialogueListScript myTarget;
+		private DialogueScript myTarget;
+		private SerializedProperty dialogueGroupProperty;
 		private ReorderableList reorderableList;
 		private Dictionary<string, ReorderableList> dictionaryInnerList = new Dictionary<string, ReorderableList>();
 
 
 		public void OnEnable() {
-			myTarget = (DialogueListScript) target;
+			myTarget = (DialogueScript) target;
 
-			SerializedProperty dialogueGroupProperty = serializedObject.FindProperty("dialogueGroup");
+			dialogueGroupProperty = serializedObject.FindProperty("dialogueGroup");
 
 			/*reorderableList = new ReorderableList(serializedObject,
 				serializedObject.FindProperty("listDialogue"),
@@ -32,9 +33,9 @@ namespace Dialogue.DialogueManager {
 			serializedObject.Update();
 
 			reorderableList.DoLayoutList();
-			
-			//Todo: dia buttons
 
+			EditorGUILayout.PropertyField(dialogueGroupProperty.FindPropertyRelative("dialogueButtons"));
+			
 			serializedObject.ApplyModifiedProperties();
 		}
 

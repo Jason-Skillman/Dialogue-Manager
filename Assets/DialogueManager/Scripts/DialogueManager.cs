@@ -18,31 +18,20 @@ namespace Dialogue.DialogueManager {
 		public float typeSpeedSlow = 0.1f;
 
 		//References
-		public Text dialogueNameText;
-		public Text dialogueSentenceText;
+		public Text dialogueNameText, dialogueSentenceText;
 		public Image imagePortrait;
-		//Todo: remove
-		public GameObject clickAreaField;
 		public AudioSource audioTyping, audioEndOfTyping;
+		public GameObject clickArea, optionBtn1, optionBtn2, optionBtn3, optionBtn4;
 
-		//Option Buttons
-		public GameObject optionBtn1, optionBtn2, optionBtn3, optionBtn4;
-
-		private bool removeButtons;
-		private EventSystem eventSystem;
 		private Animator animator;
-		private string currentSentence;
-		private Coroutine coroutineTyping, coroutineFadeOutAudio;
-
-		//private Queue<string> queue;
-		//private List<DialogueButton[]> optionBtnList = new List<DialogueButton[]>();
-		//private DialogueGroup currentDialogueGroup;
-		//private DialogueSpeaker currentSpeaker;
-
-		//private int indexSpeaker, indexSentence;
+		private EventSystem eventSystem;
 		
-		private DialogueSpeaker currentDialogueSpeaker;
 		private Queue<DialogueData> queue = new Queue<DialogueData>();
+		private DialogueGroup currentGroup;
+		private DialogueSpeaker currentDialogueSpeaker;
+		private Coroutine coroutineTyping, coroutineFadeOutAudio;
+		private bool hasButtons;
+		private string currentSentence;
 
 		private event Action OnFinish;
 
@@ -59,15 +48,22 @@ namespace Dialogue.DialogueManager {
 			else Destroy(gameObject);
 
 			animator = GetComponent<Animator>();
+		}
 
-			//Todo: remove event system reference
-			eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+		private void Update() {
+			if(eventSystem == null) {
+				eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+			}
 		}
 
 		///<summary>
 		/// Main method for adding new dialogue to the queue
 		///</summary>
 		public void AddDialogue(DialogueGroup dialogueGroup) {
+			currentGroup = dialogueGroup;
+			hasButtons = false;
+			HideAllOptionButtons();
+			
 			//Loop through all of the speakers and setup the queue
 			foreach(DialogueSpeaker speaker in dialogueGroup.dialogueSpeakers) {
 				Sprite sprite = speaker.sprite;
@@ -101,6 +97,9 @@ namespace Dialogue.DialogueManager {
 				EndDialogue();
 				return;
 			}
+			
+			//Focus on the clickArea
+			eventSystem.SetSelectedGameObject(clickArea);
 
 			//Fetch the next data block
 			DialogueData data = queue.Dequeue();
@@ -116,95 +115,18 @@ namespace Dialogue.DialogueManager {
 
 			//Setup the sentence
 			string sentence = data.sentence;
-
-			coroutineTyping = StartCoroutine(TypeSentence(sentence));
-
-
-
-			//Todo:
-			//Remove the buttons if the previous frame had them
-			/*if(removeButtons) {
-				removeButtons = false;
-
-				HideAllOptionButtons();
-			}*/
-
-			//Todo:
-			//If the current dialogue frame has a button option layout
-			/*if(queueList.Peek().dialogueButton.Length > 0) {
-
-				for(int i = 0; i < optionBtnList[0].Length; i++) {
-					if(i == 0) {
-						optionBtn1.SetActive(true);
-
-						eventSystem.SetSelectedGameObject(optionBtn1);
-
-						optionBtn1.GetComponent<Text>().text = optionBtnList[0][i].name;
-						optionBtn1.GetComponent<Button>().onClick.RemoveAllListeners();
-						optionBtn1.GetComponent<Button>().onClick.AddListener(delegate {
-							optionBtnList[0][0].dialogueTrigger.TriggerDialogue();
-							DisplayNextSentence();
-						});
-					} else if(i == 1) {
-						optionBtn2.SetActive(true);
-						optionBtn2.GetComponent<Text>().text = optionBtnList[0][i].name;
-						optionBtn2.GetComponent<Button>().onClick.RemoveAllListeners();
-						optionBtn2.GetComponent<Button>().onClick.AddListener(delegate {
-							optionBtnList[0][1].dialogueTrigger.TriggerDialogue();
-							DisplayNextSentence();
-						});
-					} else if(i == 2) {
-						optionBtn3.SetActive(true);
-						optionBtn3.GetComponent<Text>().text = optionBtnList[0][i].name;
-						optionBtn3.GetComponent<Button>().onClick.RemoveAllListeners();
-						optionBtn3.GetComponent<Button>().onClick.AddListener(delegate {
-							optionBtnList[0][2].dialogueTrigger.TriggerDialogue();
-							DisplayNextSentence();
-						});
-					} else if(i == 3) {
-						optionBtn4.SetActive(true);
-						optionBtn4.GetComponent<Text>().text = optionBtnList[0][i].name;
-						optionBtn4.GetComponent<Button>().onClick.RemoveAllListeners();
-						optionBtn4.GetComponent<Button>().onClick.AddListener(delegate {
-							optionBtnList[0][3].dialogueTrigger.TriggerDialogue();
-							DisplayNextSentence();
-						});
-					}
+			
+			//Setup the buttons
+			//Is this the last sentence
+			if(queue.Count <= 0) {
+				//Is there buttons to setup
+				if(currentGroup.dialogueButtons != null && currentGroup.dialogueButtons.Count > 0) {
+					hasButtons = true;
+					SetupButtons(currentGroup.dialogueButtons);
 				}
-
-				removeButtons = true;
-				clickAreaField.SetActive(false);
-			}*/
-			//If the current frame does not have a button option layout reset the buttons and frame
-			/*else {
-				HideAllOptionButtons();
-				clickAreaField.SetActive(true);
-				eventSystem.SetSelectedGameObject(clickAreaField);
-			}*/
-
-			//Setup the name
-			/*dialogueNameText.text = currentDialogue.name;
-
-			//Setup the sprite
-			if(currentDialogue.sprite != null)
-				imagePortrait.sprite = currentDialogue.sprite;
-			else
-				imagePortrait.sprite = defaultPortrait;*/
-
-			//Todo:
-			//Setup the sentence
-			/*string sentence = currentDialoug.sentences;
-
-			//Remove items from the queue after done using them
-			queue.RemoveAt(0);*/
-
-
-			/*IsDialoguePlaying = true;
-			if(audioTyping) audioTyping.Play();
-
-			//Start typing out sentance
-			StopAllCoroutines();
-			*/
+			}
+			
+			coroutineTyping = StartCoroutine(TypeSentence(sentence));
 		}
 
 		///<summary>
@@ -233,6 +155,8 @@ namespace Dialogue.DialogueManager {
 				StopCoroutine(coroutineTyping);
 				dialogueSentenceText.text = currentSentence;
 				FinishedTypingSentence();
+			} else if(hasButtons) {
+				//Prevent input if buttons are showing
 			} else {
 				NextSentence();
 			}
@@ -291,6 +215,58 @@ namespace Dialogue.DialogueManager {
 			audioSource.volume = 1;
 		}
 
+		private void SetupButtons(List<DialogueButton> buttons) {
+			for(int i = 0; i < buttons.Count; i++) {
+				switch(i) {
+					case 0:
+						optionBtn1.SetActive(true);
+
+						eventSystem.SetSelectedGameObject(optionBtn1);
+
+						optionBtn1.GetComponent<Text>().text = buttons[i].name;
+						optionBtn1.GetComponent<Button>().onClick.RemoveAllListeners();
+						optionBtn1.GetComponent<Button>().onClick.AddListener(delegate {
+							DialogueScript script = buttons[0].dialogueTrigger;
+							if(script) script.TriggerDialogue();
+							NextSentence();
+						});
+						break;
+					case 1:
+						optionBtn2.SetActive(true);
+						optionBtn2.GetComponent<Text>().text = buttons[i].name;
+						optionBtn2.GetComponent<Button>().onClick.RemoveAllListeners();
+						optionBtn2.GetComponent<Button>().onClick.AddListener(delegate {
+							DialogueScript script = buttons[1].dialogueTrigger;
+							if(script) script.TriggerDialogue();
+							NextSentence();
+						});
+						break;
+					case 2:
+						optionBtn3.SetActive(true);
+						optionBtn3.GetComponent<Text>().text = buttons[i].name;
+						optionBtn3.GetComponent<Button>().onClick.RemoveAllListeners();
+						optionBtn3.GetComponent<Button>().onClick.AddListener(delegate {
+							DialogueScript script = buttons[2].dialogueTrigger;
+							if(script) script.TriggerDialogue();
+							NextSentence();
+						});
+						break;
+					case 3:
+						optionBtn4.SetActive(true);
+						optionBtn4.GetComponent<Text>().text = buttons[i].name;
+						optionBtn4.GetComponent<Button>().onClick.RemoveAllListeners();
+						optionBtn4.GetComponent<Button>().onClick.AddListener(delegate {
+							DialogueScript script = buttons[3].dialogueTrigger;
+							if(script) script.TriggerDialogue();
+							NextSentence();
+						});
+						break;
+					default:
+						throw new TooManyDialogueButtonsException();
+				}
+			}
+		}
+
 		private void HideAllOptionButtons() {
 			optionBtn1.SetActive(false);
 			optionBtn2.SetActive(false);
@@ -304,6 +280,8 @@ namespace Dialogue.DialogueManager {
 			public string name;
 			public string sentence;
 		}
+
+		private class TooManyDialogueButtonsException : Exception { }
 
 	}
 

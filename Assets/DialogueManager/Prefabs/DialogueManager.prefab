@@ -486,7 +486,7 @@ RectTransform:
   - {fileID: 9177327488298576145}
   - {fileID: 9177327489477678068}
   m_Father: {fileID: 9177327489244531214}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -684,18 +684,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9177327488298576144}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DisplayNextSentence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &9177327488298576144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,18 +806,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9177327488396929429}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DisplayNextSentence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &9177327488396929429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,18 +928,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9177327488656609622}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DisplayNextSentence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &9177327488656609622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,9 +1034,9 @@ MonoBehaviour:
   dialogueNameText: {fileID: 9177327488114901009}
   dialogueSentenceText: {fileID: 9177327488830154040}
   imagePortrait: {fileID: 9177327487834966602}
-  clickAreaField: {fileID: 9177327489536407760}
   audioTyping: {fileID: 9177327487775751593}
   audioEndOfTyping: {fileID: 9177327487991282906}
+  clickArea: {fileID: 9177327489536407760}
   optionBtn1: {fileID: 9177327488656609448}
   optionBtn2: {fileID: 9177327488396929431}
   optionBtn3: {fileID: 9177327488298576146}
@@ -1189,8 +1156,8 @@ RectTransform:
   - {fileID: 9177327489872415945}
   - {fileID: 9177327488114901010}
   - {fileID: 9177327488830154041}
-  - {fileID: 9177327488018845733}
   - {fileID: 9177327489536407775}
+  - {fileID: 9177327488018845733}
   - {fileID: 9177327487840313228}
   m_Father: {fileID: 9177327489257909713}
   m_RootOrder: 0
@@ -1437,18 +1404,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9177327489477678067}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DisplayNextSentence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &9177327489477678067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,7 +1469,7 @@ RectTransform:
   m_Children:
   - {fileID: 3733056243381871980}
   m_Father: {fileID: 9177327489244531214}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
