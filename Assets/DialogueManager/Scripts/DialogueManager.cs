@@ -52,7 +52,8 @@ namespace Dialogue.DialogueManager {
 
 		private void Update() {
 			if(eventSystem == null) {
-				eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+				eventSystem = FindObjectOfType<EventSystem>();
+				return;
 			}
 		}
 
