@@ -31,7 +31,8 @@ namespace Dialogue.DialogueManager {
 		private bool removeButtons;
 		private EventSystem eventSystem;
 		private Animator animator;
-		private Coroutine coroutineFadeOutAudio;
+		private string currentSentence;
+		private Coroutine coroutineTyping, coroutineFadeOutAudio;
 
 		//private Queue<string> queue;
 		//private List<DialogueButton[]> optionBtnList = new List<DialogueButton[]>();
@@ -48,6 +49,8 @@ namespace Dialogue.DialogueManager {
 		public static DialogueManager Instance { get; private set; }
 
 		public bool IsDialoguePlaying { get; private set; }
+		
+		private bool IsTyping { get; set; }
 
 
 		private void Awake() {
@@ -114,7 +117,7 @@ namespace Dialogue.DialogueManager {
 			//Setup the sentence
 			string sentence = data.sentence;
 
-			StartCoroutine(TypeSentence(sentence));
+			coroutineTyping = StartCoroutine(TypeSentence(sentence));
 
 
 
@@ -205,17 +208,6 @@ namespace Dialogue.DialogueManager {
 		}
 
 		///<summary>
-		/// Called internally when the dialogue has finished typing out the sentence
-		/// </summary>
-		private void FinishedTypingSentence() {
-			//Fades out the audio
-			coroutineFadeOutAudio = StartCoroutine(FadeOutAudio(audioTyping, 0.5f));
-
-			//Start the EndOfTyping Audio
-			audioEndOfTyping.Play();
-		}
-
-		///<summary>
 		/// Called internally when the dialogue box has finished
 		///</summary>
 		private void EndDialogue() {
@@ -237,11 +229,20 @@ namespace Dialogue.DialogueManager {
 		/// Called externally by the area box button
 		///</summary>
 		public void OnAreaBoxSubmit() {
-			NextSentence();
+			if(IsTyping) {
+				StopCoroutine(coroutineTyping);
+				dialogueSentenceText.text = currentSentence;
+				FinishedTypingSentence();
+			} else {
+				NextSentence();
+			}
 		}
 
 		private IEnumerator TypeSentence(string sentence) {
+			IsTyping = true;
+			currentSentence = sentence;
 			dialogueSentenceText.text = "";
+			if(audioTyping) audioTyping.Play();
 
 			float typeSpeedDelay = typeSpeedFast;
 			switch(typeSpeed) {
@@ -259,10 +260,22 @@ namespace Dialogue.DialogueManager {
 			foreach(char letter in sentence.ToCharArray()) {
 				dialogueSentenceText.text += letter;
 				yield return new WaitForSeconds(typeSpeedDelay);
-
 			}
 
 			FinishedTypingSentence();
+		}
+		
+		///<summary>
+		/// Called internally when the dialogue has finished typing out the sentence
+		/// </summary>
+		private void FinishedTypingSentence() {
+			IsTyping = false;
+			
+			//Fades out the audio
+			coroutineFadeOutAudio = StartCoroutine(FadeOutAudio(audioTyping, 0.5f));
+
+			//Start the EndOfTyping Audio
+			audioEndOfTyping.Play();
 		}
 
 		private IEnumerator FadeOutAudio(AudioSource audioSource, float FadeTime) {
@@ -276,8 +289,6 @@ namespace Dialogue.DialogueManager {
 
 			audioSource.Stop();
 			audioSource.volume = 1;
-
-			StopCoroutine(coroutineFadeOutAudio);
 		}
 
 		private void HideAllOptionButtons() {

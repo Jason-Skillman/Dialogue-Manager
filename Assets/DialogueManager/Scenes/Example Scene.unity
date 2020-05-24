@@ -913,7 +913,12 @@ MonoBehaviour:
     - sprite: {fileID: 0}
       name: Jason
       sentences:
-      - Hello
+      - 'Hello this is a really long sentance
+
+        Hello this is a really long
+        sentance
+
+        Hello this is a really long sentance'
     - sprite: {fileID: 0}
       name: Brian
       sentences:
