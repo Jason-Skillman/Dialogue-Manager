@@ -23,33 +23,40 @@ namespace Dialogue.DialogueManager {
 		public Image imagePortrait;
 		//Todo: remove
 		public GameObject clickAreaField;
-		public AudioSource audioTyping,audioEndOfTyping;
+		public AudioSource audioTyping, audioEndOfTyping;
 
 		//Option Buttons
 		public GameObject optionBtn1, optionBtn2, optionBtn3, optionBtn4;
-		
+
 		private bool removeButtons;
 		private EventSystem eventSystem;
 		private Animator animator;
 		private Coroutine coroutineFadeOutAudio;
 
-		private Queue<DialogueSpeaker> queue;
+		//private Queue<string> queue;
 		//private List<DialogueButton[]> optionBtnList = new List<DialogueButton[]>();
+		//private DialogueGroup currentDialogueGroup;
+		//private DialogueSpeaker currentSpeaker;
+
+		//private int indexSpeaker, indexSentence;
+		
+		private DialogueSpeaker currentDialogueSpeaker;
+		private Queue<DialogueData> queue = new Queue<DialogueData>();
 
 		private event Action OnFinish;
-		
+
 		public static DialogueManager Instance { get; private set; }
-		
+
 		public bool IsDialoguePlaying { get; private set; }
 
-		
-		void Awake() {
+
+		private void Awake() {
 			DontDestroyOnLoad(gameObject);
 			if(Instance == null) Instance = this;
 			else Destroy(gameObject);
-			
+
 			animator = GetComponent<Animator>();
-			
+
 			//Todo: remove event system reference
 			eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		}
@@ -57,59 +64,59 @@ namespace Dialogue.DialogueManager {
 		///<summary>
 		/// Main method for adding new dialogue to the queue
 		///</summary>
-		public void AddDialogue(List<DialogueSpeaker> dialogueList, Action onFinish = null) {
-			//Open the box
-			animator.SetBool("IsOpen", true);
-
-			//List<Holder> tempList = new List<Holder>();
-
-			//Add the callback delegate to the callback list
-			OnFinish += onFinish;
-
-			//Loop through dialogue amount
-			/*for(int i = 0; i < dialogueList.Count; i++) {
-				//Loop through sentances amount
-				foreach(string sentence in dialogueList[i].sentences) {
-					Holder holder = new Holder();
-					holder.name = dialogueList[i].name;
-					holder.sentences = sentence;
-					holder.btnOn = false;
-
-					tempList.Add(holder);
+		public void AddDialogue(DialogueGroup dialogueGroup) {
+			//Loop through all of the speakers and setup the queue
+			foreach(DialogueSpeaker speaker in dialogueGroup.dialogueSpeakers) {
+				Sprite sprite = speaker.sprite;
+				string name = speaker.name;
+				
+				//Loop through all of the sentences
+				foreach(string sentence in speaker.sentences) {
+					DialogueData data = new DialogueData();
+					data.sprite = sprite;
+					data.name = name;
+					data.sentence = sentence;
+					queue.Enqueue(data);
 				}
-			}*/
-
-			//Check if their is a button option and add it to last item
-			/*if(btn != null && btn.Length != 0) {
-				tempList[tempList.Count - 1].btnOn = true;
-
-				optionBtnList.Add(btn);
-			}*/
-
-			//Add all created lists to master list
-			/*foreach(Holder hold in tempList) {
-				queueList.Add(hold);
-			}*/
+			}
 			
-			queue = new Queue<DialogueSpeaker>(dialogueList);
-
 			//Startup for the first time
 			if(IsDialoguePlaying == false) {
-				DisplayNextSentence();
+				IsDialoguePlaying = true;
+				animator.SetBool("IsOpen", true);
+				
+				NextSentence();
 			}
 		}
 
 		///<summary>
 		/// Main method to call when to start the next sentence
 		///</summary>
-		public void DisplayNextSentence() {
+		public void NextSentence() {
 			//Has the dialogue ended?
 			if(queue.Count <= 0) {
 				EndDialogue();
 				return;
 			}
 
-			DialogueSpeaker currentDialoug = queue.Dequeue();
+			//Fetch the next data block
+			DialogueData data = queue.Dequeue();
+			
+			//Setup the name
+			dialogueNameText.text = data.name;
+
+			//Setup the sprite
+			if(data.sprite != null)
+				imagePortrait.sprite = data.sprite;
+			else
+				imagePortrait.sprite = defaultPortrait;
+
+			//Setup the sentence
+			string sentence = data.sentence;
+
+			StartCoroutine(TypeSentence(sentence));
+
+
 
 			//Todo:
 			//Remove the buttons if the previous frame had them
@@ -173,41 +180,39 @@ namespace Dialogue.DialogueManager {
 			}*/
 
 			//Setup the name
-			dialogueNameText.text = currentDialoug.name;
-			
+			/*dialogueNameText.text = currentDialogue.name;
+
 			//Setup the sprite
-			if(currentDialoug.sprite != null)
-				imagePortrait.sprite = currentDialoug.sprite;
-			else 
-				imagePortrait.sprite = defaultPortrait;
-			
+			if(currentDialogue.sprite != null)
+				imagePortrait.sprite = currentDialogue.sprite;
+			else
+				imagePortrait.sprite = defaultPortrait;*/
+
 			//Todo:
 			//Setup the sentence
-			string sentence = "hi";
 			/*string sentence = currentDialoug.sentences;
 
 			//Remove items from the queue after done using them
 			queue.RemoveAt(0);*/
 
 
-			IsDialoguePlaying = true;
+			/*IsDialoguePlaying = true;
 			if(audioTyping) audioTyping.Play();
 
 			//Start typing out sentance
 			StopAllCoroutines();
-			StartCoroutine(TypeSentence(sentence));
+			*/
 		}
 
 		///<summary>
 		/// Called internally when the dialogue has finished typing out the sentence
 		/// </summary>
-		private void FinishedTypingSentance() {
+		private void FinishedTypingSentence() {
 			//Fades out the audio
 			coroutineFadeOutAudio = StartCoroutine(FadeOutAudio(audioTyping, 0.5f));
 
 			//Start the EndOfTyping Audio
 			audioEndOfTyping.Play();
-			//StartCoroutine(FadeOutAudio(audioEndOfTyping, 0.5f));
 		}
 
 		///<summary>
@@ -224,8 +229,15 @@ namespace Dialogue.DialogueManager {
 		///<summary>
 		/// Called externally by the animator controller when the dialogue box has finished its close animation
 		///</summary>
-		private void DialogueBoxClosed() {
+		public void OnDialogueBoxClose() {
 			IsDialoguePlaying = false;
+		}
+
+		///<summary>
+		/// Called externally by the area box button
+		///</summary>
+		public void OnAreaBoxSubmit() {
+			NextSentence();
 		}
 
 		private IEnumerator TypeSentence(string sentence) {
@@ -250,7 +262,7 @@ namespace Dialogue.DialogueManager {
 
 			}
 
-			FinishedTypingSentance();
+			FinishedTypingSentence();
 		}
 
 		private IEnumerator FadeOutAudio(AudioSource audioSource, float FadeTime) {
@@ -267,12 +279,19 @@ namespace Dialogue.DialogueManager {
 
 			StopCoroutine(coroutineFadeOutAudio);
 		}
-		
+
 		private void HideAllOptionButtons() {
 			optionBtn1.SetActive(false);
 			optionBtn2.SetActive(false);
 			optionBtn3.SetActive(false);
 			optionBtn4.SetActive(false);
+		}
+		
+		[Serializable]
+		private struct DialogueData {
+			public Sprite sprite;
+			public string name;
+			public string sentence;
 		}
 
 	}
@@ -282,13 +301,5 @@ namespace Dialogue.DialogueManager {
 		Medium,
 		Slow
 	}
-
-	/*[Serializable]
-	public class Holder {
-		public Sprite sprite;
-		public string name;
-		public string sentences;
-		public bool btnOn;
-	}*/
 
 }

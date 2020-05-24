@@ -434,7 +434,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 938649476}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -636,18 +636,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304679063}
   m_CullTransparentMesh: 0
---- !u!114 &320879034 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9177327488792758253, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-    type: 3}
-  m_PrefabInstance: {fileID: 9177327488572571223}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52ced372fe915d849b3a40a567dadca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &610157016
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,8 +911,14 @@ MonoBehaviour:
   dialogueGroup:
     dialogueSpeakers:
     - sprite: {fileID: 0}
-      name: 
-      sentences: []
+      name: Jason
+      sentences:
+      - Hello
+    - sprite: {fileID: 0}
+      name: Brian
+      sentences:
+      - 1
+      - 2
     dialogueButton:
       name: 
       dialogueTrigger: {fileID: 0}
@@ -2484,25 +2478,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7581874405447352066, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177327487775751593, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 9177327487775751595, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}
       propertyPath: m_Name
       value: Typing
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177327487991282906, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9177327487991282908, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}
@@ -2584,11 +2563,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9177327488792758252, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 77a4a3c8022f3b541a75c7263fc2564d, type: 2}
     - target: {fileID: 9177327488792758254, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}
       propertyPath: m_Name
@@ -2607,11 +2581,6 @@ PrefabInstance:
     - target: {fileID: 9177327489244531213, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177327489244531213, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9177327489244531214, guid: f3fb8aa42672de940b9dd64e803f7ed3,
@@ -2653,16 +2622,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DialogueBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177327489536407774, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 320879034}
-    - target: {fileID: 9177327489536407774, guid: f3fb8aa42672de940b9dd64e803f7ed3,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DisplayNextSentence
       objectReference: {fileID: 0}
     - target: {fileID: 9177327489631666798, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}

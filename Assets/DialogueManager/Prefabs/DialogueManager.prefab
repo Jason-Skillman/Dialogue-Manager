@@ -135,7 +135,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -378,7 +378,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1067,13 +1067,13 @@ MonoBehaviour:
   dialogueNameText: {fileID: 9177327488114901009}
   dialogueSentenceText: {fileID: 9177327488830154040}
   imagePortrait: {fileID: 9177327487834966602}
+  clickAreaField: {fileID: 9177327489536407760}
   audioTyping: {fileID: 9177327487775751593}
   audioEndOfTyping: {fileID: 9177327487991282906}
   optionBtn1: {fileID: 9177327488656609448}
   optionBtn2: {fileID: 9177327488396929431}
   optionBtn3: {fileID: 9177327488298576146}
   optionBtn4: {fileID: 9177327489477678069}
-  clickAreaField: {fileID: 9177327489536407760}
 --- !u!1 &9177327488830154042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1572,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9177327488792758253}
-        m_MethodName: DisplayNextSentence
+        m_MethodName: OnAreaBoxSubmit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
