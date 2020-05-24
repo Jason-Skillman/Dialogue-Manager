@@ -100,7 +100,8 @@ namespace Dialogue.DialogueManager {
 			}
 			
 			//Focus on the clickArea
-			eventSystem.SetSelectedGameObject(clickArea);
+			if(eventSystem)
+				eventSystem.SetSelectedGameObject(clickArea);
 
 			//Fetch the next data block
 			DialogueData data = queue.Dequeue();
@@ -222,7 +223,8 @@ namespace Dialogue.DialogueManager {
 					case 0:
 						optionBtn1.SetActive(true);
 
-						eventSystem.SetSelectedGameObject(optionBtn1);
+						if(eventSystem)
+							eventSystem.SetSelectedGameObject(optionBtn1);
 
 						optionBtn1.GetComponent<Text>().text = buttons[i].name;
 						optionBtn1.GetComponent<Button>().onClick.RemoveAllListeners();
