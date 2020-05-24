@@ -7,20 +7,14 @@ namespace Dialogue.DialogueManager {
 	[CustomEditor(typeof(DialogueScript))]
 	public class DialogueScriptEditor : Editor {
 
-		private DialogueScript myTarget;
 		private SerializedProperty dialogueGroupProperty;
 		private ReorderableList reorderableList;
 		private Dictionary<string, ReorderableList> dictionaryInnerList = new Dictionary<string, ReorderableList>();
 
 
 		public void OnEnable() {
-			myTarget = (DialogueScript) target;
-
 			dialogueGroupProperty = serializedObject.FindProperty("dialogueGroup");
 
-			/*reorderableList = new ReorderableList(serializedObject,
-				serializedObject.FindProperty("listDialogue"),
-				true, true, true, true);*/
 			reorderableList = new ReorderableList(serializedObject,
 				dialogueGroupProperty.FindPropertyRelative("dialogueSpeakers"),
 				true, true, true, true);
@@ -97,10 +91,6 @@ namespace Dialogue.DialogueManager {
 			//Setup the inner list
 			var height = (innerListProp.arraySize + 3) * EditorGUIUtility.singleLineHeight;
 			innerReorderableList.DoList(new Rect(rect.x, rect.y + 40, rect.width, height));
-
-
-			//Debug
-			//EditorGUILayout.PropertyField(element.FindPropertyRelative("sentences"));
 		}
 
 		private float GetElementHeight(int index) {

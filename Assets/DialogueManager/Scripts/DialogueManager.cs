@@ -232,6 +232,8 @@ namespace Dialogue.DialogueManager {
 							DialogueScript script = buttons[0].dialogueTrigger;
 							if(script) script.TriggerDialogue();
 							NextSentence();
+							
+							buttons[0].onClick?.Invoke();
 						});
 						break;
 					case 1:
@@ -242,6 +244,8 @@ namespace Dialogue.DialogueManager {
 							DialogueScript script = buttons[1].dialogueTrigger;
 							if(script) script.TriggerDialogue();
 							NextSentence();
+							
+							buttons[1].onClick?.Invoke();
 						});
 						break;
 					case 2:
@@ -252,6 +256,8 @@ namespace Dialogue.DialogueManager {
 							DialogueScript script = buttons[2].dialogueTrigger;
 							if(script) script.TriggerDialogue();
 							NextSentence();
+							
+							buttons[2].onClick?.Invoke();
 						});
 						break;
 					case 3:
@@ -262,6 +268,8 @@ namespace Dialogue.DialogueManager {
 							DialogueScript script = buttons[3].dialogueTrigger;
 							if(script) script.TriggerDialogue();
 							NextSentence();
+							
+							buttons[3].onClick?.Invoke();
 						});
 						break;
 					default:
