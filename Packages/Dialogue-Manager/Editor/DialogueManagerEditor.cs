@@ -2,14 +2,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Dialogue.DialogueManager {
-
+namespace Dialogue {
 	[CustomEditor(typeof(DialogueManager), true)]
 	public class DialogueManagerEditor : Editor {
 
 		private bool foldoutTypeSpeeds;
 
-		
 		public override void OnInspectorGUI() {
 			DialogueManager myTarget = (DialogueManager)target;
 			serializedObject.Update();
@@ -54,6 +52,6 @@ namespace Dialogue.DialogueManager {
 			
 			serializedObject.ApplyModifiedProperties();
 		}
-	} 
 
+	}
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Dialogue.DialogueManager {
-
+namespace Dialogue {
 	public class DialogueManager : MonoBehaviour {
 
 		public Sprite defaultPortrait;
@@ -40,7 +39,6 @@ namespace Dialogue.DialogueManager {
 		public bool IsDialoguePlaying { get; private set; }
 		
 		private bool IsTyping { get; set; }
-
 
 		private void Awake() {
 			DontDestroyOnLoad(gameObject);
@@ -301,5 +299,4 @@ namespace Dialogue.DialogueManager {
 		Medium,
 		Slow
 	}
-
 }
