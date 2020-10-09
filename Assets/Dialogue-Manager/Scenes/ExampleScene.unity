@@ -148,17 +148,17 @@ RectTransform:
   m_GameObject: {fileID: 610157016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.28, y: 1.28, z: 1.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1070581656}
   - {fileID: 656802044}
   m_Father: {fileID: 1921805560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -129, y: -92}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &656802043
 GameObject:
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 656802047}
   - component: {fileID: 656802046}
   m_Layer: 5
-  m_Name: StartDiaButton Billy
+  m_Name: Button02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,8 +199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 84, y: 218}
-  m_SizeDelta: {x: 105.7, y: 78}
+  m_AnchoredPosition: {x: 102, y: 64}
+  m_SizeDelta: {x: 156.1, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &656802046
 MonoBehaviour:
@@ -402,7 +402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035533658
 GameObject:
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 1043777205}
   - component: {fileID: 1043777204}
   m_Layer: 0
-  m_Name: Jason
+  m_Name: Jack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,9 +504,9 @@ MonoBehaviour:
   dialogueGroup:
     dialogueSpeakers:
     - sprite: {fileID: 0}
-      name: Jason
+      name: Jack
       sentences:
-      - Hello my name is Jason
+      - Hello my name is Jack
       - This is my dialogue box
     dialogueButtons: []
 --- !u!4 &1043777205
@@ -574,12 +574,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueGroup:
     dialogueSpeakers:
-    - sprite: {fileID: 21300000, guid: b72aeb72db498334f90cc87403ad4326, type: 3}
+    - sprite: {fileID: 0}
       name: Billy
       sentences:
-      - Hello I am Billy
-      - This is my really long dialogue box, like really long dialogue box.
-      - Do you want to continue
+      - Hello I am Billy.
+      - This is my really long dialogue box. Up to three lines for this example.
+        This is line three.
+      - Do you want to continue?
     dialogueButtons:
     - name: Yes
       dialogueTrigger: {fileID: 1260885977}
@@ -606,7 +607,7 @@ GameObject:
   - component: {fileID: 1070581659}
   - component: {fileID: 1070581658}
   m_Layer: 5
-  m_Name: StartDiaButton Jason
+  m_Name: Button01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,8 +631,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -44.7, y: 218}
-  m_SizeDelta: {x: 105.7, y: 78}
+  m_AnchoredPosition: {x: -78, y: 64}
+  m_SizeDelta: {x: 120, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1070581658
 MonoBehaviour:
@@ -791,10 +792,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueGroup:
     dialogueSpeakers:
-    - sprite: {fileID: 21300000, guid: b72aeb72db498334f90cc87403ad4326, type: 3}
+    - sprite: {fileID: 0}
       name: Billy
       sentences:
-      - Ok I will leave you be.
+      - This is the no option
     dialogueButtons: []
 --- !u!1001 &1100015407
 PrefabInstance:
@@ -971,7 +972,7 @@ PrefabInstance:
     - target: {fileID: 9177327488792758251, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9177327488792758251, guid: f3fb8aa42672de940b9dd64e803f7ed3,
         type: 3}
@@ -1006,7 +1007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1118860053}
   m_Layer: 0
-  m_Name: DialogueHolder
+  m_Name: DialogueScripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,10 +1078,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueGroup:
     dialogueSpeakers:
-    - sprite: {fileID: 21300000, guid: b72aeb72db498334f90cc87403ad4326, type: 3}
+    - sprite: {fileID: 0}
       name: Billy
       sentences:
-      - Great. I have nothing else to say.
+      - Thanks for saying yes.
     dialogueButtons: []
 --- !u!1 &1287261351
 GameObject:
@@ -1143,7 +1144,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0e9e564dc66cb65458b32b8390c7b84c, type: 3}
-    m_FontSize: 34
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -1154,7 +1155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Billy
+  m_Text: Speaker With Options
 --- !u!222 &1287261354
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1225,10 +1226,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0e9e564dc66cb65458b32b8390c7b84c, type: 3}
-    m_FontSize: 34
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1236,7 +1237,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jason
+  m_Text: Speaker
 --- !u!222 &1424885546
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1297,10 +1298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1343,7 +1344,7 @@ RectTransform:
   m_Children:
   - {fileID: 610157017}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
