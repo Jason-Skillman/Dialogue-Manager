@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ namespace Dialogue {
 		public float typeSpeedSlow = 0.1f;
 
 		//References
-		public Text dialogueNameText, dialogueSentenceText;
+		public TMP_Text dialogueNameText, dialogueSentenceText;
 		public Image imagePortrait;
 		public AudioSource audioTyping, audioEndOfTyping;
 		public GameObject clickArea, optionBtn1, optionBtn2, optionBtn3, optionBtn4;
@@ -224,7 +225,7 @@ namespace Dialogue {
 						if(eventSystem)
 							eventSystem.SetSelectedGameObject(optionBtn1);
 
-						optionBtn1.GetComponent<Text>().text = buttons[i].name;
+						optionBtn1.GetComponentInChildren<TMP_Text>().text = buttons[i].name;
 						optionBtn1.GetComponent<Button>().onClick.RemoveAllListeners();
 						optionBtn1.GetComponent<Button>().onClick.AddListener(delegate {
 							DialogueScript script = buttons[0].dialogueTrigger;
@@ -236,7 +237,7 @@ namespace Dialogue {
 						break;
 					case 1:
 						optionBtn2.SetActive(true);
-						optionBtn2.GetComponent<Text>().text = buttons[i].name;
+						optionBtn2.GetComponentInChildren<TMP_Text>().text = buttons[i].name;
 						optionBtn2.GetComponent<Button>().onClick.RemoveAllListeners();
 						optionBtn2.GetComponent<Button>().onClick.AddListener(delegate {
 							DialogueScript script = buttons[1].dialogueTrigger;
@@ -248,7 +249,7 @@ namespace Dialogue {
 						break;
 					case 2:
 						optionBtn3.SetActive(true);
-						optionBtn3.GetComponent<Text>().text = buttons[i].name;
+						optionBtn3.GetComponentInChildren<TMP_Text>().text = buttons[i].name;
 						optionBtn3.GetComponent<Button>().onClick.RemoveAllListeners();
 						optionBtn3.GetComponent<Button>().onClick.AddListener(delegate {
 							DialogueScript script = buttons[2].dialogueTrigger;
@@ -260,7 +261,7 @@ namespace Dialogue {
 						break;
 					case 3:
 						optionBtn4.SetActive(true);
-						optionBtn4.GetComponent<Text>().text = buttons[i].name;
+						optionBtn4.GetComponentInChildren<TMP_Text>().text = buttons[i].name;
 						optionBtn4.GetComponent<Button>().onClick.RemoveAllListeners();
 						optionBtn4.GetComponent<Button>().onClick.AddListener(delegate {
 							DialogueScript script = buttons[3].dialogueTrigger;
