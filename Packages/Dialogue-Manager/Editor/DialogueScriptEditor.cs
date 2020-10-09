@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-namespace Dialogue.DialogueManager {
+namespace Dialogue {
 	[CustomEditor(typeof(DialogueScript))]
 	public class DialogueScriptEditor : Editor {
 
@@ -109,5 +109,4 @@ namespace Dialogue.DialogueManager {
 		}
 
 	}
-	
 }

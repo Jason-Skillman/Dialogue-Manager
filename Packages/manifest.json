@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.jasonskillman.commandconsole": "ssh://git@github.com/Jason-Skillman/Command-Console.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ads": "3.4.4",
@@ -45,5 +46,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.jasonskillman.commandconsole": {
+      "revision": "HEAD",
+      "hash": "b74a398f96e03d57bd161c712c1f9324141ffc0e"
+    }
   }
 }
