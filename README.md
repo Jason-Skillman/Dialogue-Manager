@@ -1,25 +1,13 @@
-# **Command Console**
+# **Dialogue Manager**
 
 #### **Overview**
-A debug command console that can be used at runtime and easily extendable.
+A RPG styled UI dialogue manager. Supports multiple lines of text, NPC portraits and option buttons.
 
 #### **Documentation**
-You can create a new console and add it to your scene by right clicking in the hierarchy "Conosle/Command Console".
+You can create a new dialogue manager and add it to your scene by right clicking in the hierarchy **"Dialogue/Dialogue Manager"**. Only one dialogue manager should exist within any given scene.
 
-Only one command console should exist within any given scene.
+You can create a new dialogue script and add it to your scene by right clicking in the hierarchy **"Dialogue/Dialogue Script"**. This is where all of the speaker's dialogue should be. Each person in a script has a sprite, name and a list of sentances. More people can be added to the same script.
 
-To open the console at runtime use the tilde key "~". This can be disabled in the inspector for custom input remaping.
+To run the dialogue script, call the ```TriggerDialogue()``` method on the DialogueScript object. This can either be done through code or an event. This will then hand the script over the the dialogue manager and the UI will start playing.
 
-#### **API**
-Custom commands can be written for the command console. This is the heart and soul of the console.
-
-A small list of commands have already been written as examples. Some examples include print, load scene and unload scene. They can be found at "Runtime/Scripts/Commands" starting at the root of the package.
-
- ### **ICommand**
- To create a custom command create a new script and extend the ICommand interface.
-
-|Property/Method|Description|
-|---|---|
-|`Label`| This is the main name/label of the command you are creating.|
-|`SuggestedArgs`| This is an array of args to let the user know what kind of data to put. Ex. int or string.|
-|`Action(args)`| This is the executed code when the command has been activated. Commands are activated by running them in the console. Args should match suggested args correctly.|
+Option buttons can be added to the end of the script for more in-depth conversations. Up to four options can be added to each script. Each option has a name and the next dialogue script to play. Ex. "Yes, Maybe, No". You can also use the unity event for other kinds of interactions.
