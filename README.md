@@ -1,5 +1,5 @@
 # Dialogue Manager
-A RPG styled UI dialogue manager. Supports multiple lines of text, NPC portraits and option buttons.
+An RPG styled UI dialogue manager. Supports multiple lines of text, NPC portraits and option buttons.
 
 ## How to install
 This package can be installed through the Unity `Package Manager` with Unity version 2019.3 or greater.
