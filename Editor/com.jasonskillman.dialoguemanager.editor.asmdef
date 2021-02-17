@@ -1,7 +1,8 @@
 {
     "name": "JasonSkillman.DialogueManager.Editor",
+    "rootNamespace": "",
     "references": [
-        "GUID:a5f9dc20d875d4b4f86ce4073f5a9df3"
+        "GUID:76295a78e137ce7479ce46477e98d0e6"
     ],
     "includePlatforms": [
         "Editor"
