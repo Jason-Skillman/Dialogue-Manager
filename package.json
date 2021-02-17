@@ -11,12 +11,5 @@
     "name": "Jason Skillman",
     "email": "jason_skillman@outlook.com",
     "url": "https://github.com/Jason-Skillman"
-  },
-  "samples": [
-    {
-      "displayName": "Event Sample",
-      "description": "Shows how to implement an event with scriptable objects.",
-      "path": "Samples~/EventSample"
-    }
-  ]
+  }
 }
