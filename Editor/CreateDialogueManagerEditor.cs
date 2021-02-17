@@ -1,11 +1,12 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Dialogue {
-	public static class GameObjectMenuEditor {
+	public static class CreateDialogueManagerEditor {
 
 		[MenuItem("GameObject/Dialogue/Dialogue Manager", false, 10)]
-		static void CreatePrefabDialogueManager(MenuCommand menuCommand) {
+		static void CreateDialogueManager(MenuCommand menuCommand) {
 			//Check if the manager has already been created
 			DialogueManager existingManager = GameObject.FindObjectOfType<DialogueManager>();
 
@@ -23,21 +24,16 @@ namespace Dialogue {
 			PrefabUtility.InstantiatePrefab(managerPrefab);
 
 			Selection.activeObject = managerPrefab;
+			
+			
+			//Instantiate an EventSystem if one does not exist
+			GameObject eventSystem = GameObject.Find("EventSystem");
+			if(eventSystem != null) return;
+        
+			eventSystem = new GameObject("EventSystem");
+			eventSystem.AddComponent<EventSystem>();
+			eventSystem.AddComponent<StandaloneInputModule>();
 		}
-
-		[MenuItem("GameObject/Dialogue/Dialogue Script", false, 10)]
-		static void CreatePrefabDialogueScript(MenuCommand menuCommand) {
-			//Create an empty game object
-			GameObject go = new GameObject("DialogueScript");
-			go.AddComponent<DialogueScript>();
-
-			//Ensure it gets reparented if this was a context click (otherwise does nothing)
-			GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
-
-			//Register the creation in the undo system
-			Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
-			Selection.activeObject = go;
-		}
-
+		
 	}
 }

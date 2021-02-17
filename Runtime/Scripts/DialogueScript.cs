@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Dialogue {
-	public class DialogueScript : MonoBehaviour {
+	[CreateAssetMenu(menuName = "Dialogue/Dialogue Script", fileName = "New Dialogue Script", order = 1)]
+	public class DialogueScript : ScriptableObject {
 
 		public DialogueGroup dialogueGroup;
 		

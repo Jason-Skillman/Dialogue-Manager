@@ -42,9 +42,9 @@ namespace Dialogue {
 		private bool IsTyping { get; set; }
 
 		private void Awake() {
-			DontDestroyOnLoad(gameObject);
 			if(Instance == null) Instance = this;
 			else Destroy(gameObject);
+			DontDestroyOnLoad(gameObject);
 
 			animator = GetComponent<Animator>();
 		}
