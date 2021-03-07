@@ -27,6 +27,13 @@ If you are using Unity 2019.2 or lower than you will not be able to install the 
 
 ---
 
+### Git submodule
+Alternatively you can also install this package as a git submodule.
+
+```console
+$ git submodule add https://github.com/Jason-Skillman/Dialogue-Manager.git Packages/Dialogue-Manager
+```
+
 ## How to setup
 You can create a new dialogue manager and add it to the hierarchy by going to `Create/Dialogue/Dialogue Manager`. Only one dialogue manager should exist within any given scene.
 
