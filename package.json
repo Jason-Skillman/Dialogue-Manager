@@ -1,7 +1,7 @@
 {
   "name": "com.jasonskillman.dialoguemanager",
   "displayName": "Dialogue Manager",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A RPG styled UI dialogue manager. Supports multiple lines of text, NPC portraits and option buttons.",
   "keywords": [
 	"dialogue"

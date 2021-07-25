@@ -1,5 +1,8 @@
 # Dialogue Manager Changelog
 
+## [1.1.1] - 07/24/2021
+- Updated assembly definition names.
+
 ## [1.1.0] - 02/16/2021
 - Convert dialogue script to scriptable object.
 
