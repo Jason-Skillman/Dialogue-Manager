@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+namespace JasonSkillman.Dialogue {
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using TMPro;
+	using UnityEngine;
+	using UnityEngine.EventSystems;
+	using UnityEngine.UI;
 
-namespace Dialogue {
 	public class DialogueManager : MonoBehaviour {
 
 		public Sprite defaultPortrait;

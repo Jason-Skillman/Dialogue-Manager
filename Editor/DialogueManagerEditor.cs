@@ -1,8 +1,6 @@
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace Dialogue {
+namespace JasonSkillman.Dialogue.Editor {
+	using UnityEditor;
+	
 	[CustomEditor(typeof(DialogueManager), true)]
 	public class DialogueManagerEditor : Editor {
 

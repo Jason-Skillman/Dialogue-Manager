@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEditorInternal;
-
-namespace Dialogue {
+namespace JasonSkillman.Dialogue.Editor {
+	using System.Collections.Generic;
+	using UnityEngine;
+	using UnityEditor;
+	using UnityEditorInternal;
+	
 	[CustomEditor(typeof(DialogueScript))]
 	public class DialogueScriptEditor : Editor {
 

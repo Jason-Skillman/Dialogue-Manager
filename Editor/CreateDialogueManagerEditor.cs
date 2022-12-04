@@ -1,8 +1,8 @@
-﻿using UnityEditor;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
-namespace Dialogue {
+﻿namespace JasonSkillman.Dialogue.Editor {
+	using UnityEditor;
+	using UnityEngine;
+	using UnityEngine.EventSystems;
+	
 	public static class CreateDialogueManagerEditor {
 
 		[MenuItem("GameObject/Dialogue/Dialogue Manager", false, 10)]
