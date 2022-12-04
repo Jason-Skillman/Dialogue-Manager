@@ -1,6 +1,6 @@
-using UnityEngine;
-
-namespace Dialogue {
+namespace JasonSkillman.Dialogue {
+	using UnityEngine;
+	
 	[CreateAssetMenu(menuName = "Dialogue/Dialogue Script", fileName = "New Dialogue Script", order = 1)]
 	public class DialogueScript : ScriptableObject {
 

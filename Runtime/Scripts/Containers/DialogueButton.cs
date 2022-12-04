@@ -1,7 +1,7 @@
-using System;
-using UnityEngine.Events;
-
-namespace Dialogue {
+namespace JasonSkillman.Dialogue {
+	using System;
+	using UnityEngine.Events;
+	
 	[Serializable]
 	public struct DialogueButton {
 		public string name;

@@ -1,6 +1,6 @@
 {
     "name": "JasonSkillman.DialogueManager.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "JasonSkillman.Dialogue.Editor",
     "references": [
         "GUID:76295a78e137ce7479ce46477e98d0e6"
     ],
